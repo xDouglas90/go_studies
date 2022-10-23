@@ -4,12 +4,16 @@ import (
 	"log"
 	"net/http"
 	"rest-api/controllers"
+	"rest-api/middleware"
 
 	"github.com/gorilla/mux"
 )
 
 func HandleRequests() {
 	r := mux.NewRouter().StrictSlash(true)
+
+	r.Use(middleware.ContentTypeMiddleware)
+
 	r.HandleFunc("/", controllers.Home)
 	r.HandleFunc("/api/personalities", controllers.AllPersonalities).Methods("GET")
 	r.HandleFunc("/api/personalities", controllers.CreatePersonality).Methods("POST")
@@ -18,5 +22,6 @@ func HandleRequests() {
 	r.HandleFunc("/api/personalities/{id}", controllers.UpdatePersonality).Methods("PUT")
 	r.HandleFunc("/api/personalities/{id}", controllers.UpdatePersonalityName).Methods("PATCH")
 	r.HandleFunc("/api/personalities/{id}", controllers.UpdatePersonalityHistory).Methods("PATCH")
+
 	log.Fatal(http.ListenAndServe(":8080", r))
 }
