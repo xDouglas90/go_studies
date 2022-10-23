@@ -23,18 +23,6 @@ func GetStudent(c *gin.Context) {
 	c.JSON(200, student)
 }
 
-func Greeting(c *gin.Context) {
-	name := c.Param("name")
-	var student models.Student
-	database.DBConn.Where("name = ?", name).First(&student)
-	// verify if student name contains the name passed in the URL
-	if student.Name == name {
-		c.JSON(200, gin.H{"message": "Olá " + name + " seja muito bem vindo(a)!"})
-	} else {
-		c.JSON(404, gin.H{"message": "Aluno não encontrado"})
-	}
-}
-
 func CreateStudent(c *gin.Context) {
 	var newStudent models.Student
 	if err := c.ShouldBindJSON(&newStudent); err != nil {
@@ -49,10 +37,6 @@ func UpdateStudent(c *gin.Context) {
 	var student models.Student
 	id := c.Param("id")
 	database.DBConn.First(&student, id)
-	if student.ID == 0 {
-		c.JSON(404, gin.H{"error": "Aluno não encontrado"})
-		return
-	}
 	if err := c.ShouldBindJSON(&student); err != nil {
 		c.JSON(400, gin.H{"error": err.Error()})
 		return
@@ -71,4 +55,26 @@ func DeleteStudent(c *gin.Context) {
 	}
 	database.DBConn.Delete(&student)
 	c.JSON(204, nil)
+}
+
+func GetStudentByCPF(c *gin.Context) {
+	var student models.Student
+	cpf := c.Param("cpf")
+	database.DBConn.Where("cpf = ?", cpf).First(&student)
+	if student.CPF == cpf {
+		c.JSON(200, student)
+	} else {
+		c.JSON(404, gin.H{"message": "Aluno não encontrado"})
+	}
+}
+
+func GetStudentByRG(c *gin.Context) {
+	var student models.Student
+	rg := c.Param("rg")
+	database.DBConn.Where("rg = ?", rg).First(&student)
+	if student.RG == rg {
+		c.JSON(200, student)
+	} else {
+		c.JSON(404, gin.H{"message": "Aluno não encontrado"})
+	}
 }
