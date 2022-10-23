@@ -3,10 +3,14 @@ package routes
 import (
 	"log"
 	"net/http"
-	"studies/alura/rest-api/controllers"
+	"rest-api/controllers"
+
+	"github.com/gorilla/mux"
 )
 
 func HandleRequests() {
-	http.HandleFunc("/", controllers.Home)
-	log.Fatal(http.ListenAndServe(":8080", nil))
+	r := mux.NewRouter().StrictSlash(true)
+	r.HandleFunc("/", controllers.Home)
+	r.HandleFunc("/api/personalities", controllers.AllPersonalities)
+	log.Fatal(http.ListenAndServe(":8080", r))
 }
