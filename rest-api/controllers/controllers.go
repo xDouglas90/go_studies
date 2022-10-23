@@ -69,3 +69,33 @@ func UpdatePersonality(w http.ResponseWriter, r *http.Request) {
 
 	json.NewEncoder(w).Encode(personality)
 }
+
+func UpdatePersonalityName(w http.ResponseWriter, r *http.Request) {
+	vars := mux.Vars(r)
+	key := vars["id"]
+
+	var personality models.Personality
+
+	database.DB.First(&personality, key)
+
+	json.NewDecoder(r.Body).Decode(&personality)
+
+	database.DB.Model(&personality).Update("name", personality.Name)
+
+	json.NewEncoder(w).Encode(personality)
+}
+
+func UpdatePersonalityHistory(w http.ResponseWriter, r *http.Request) {
+	vars := mux.Vars(r)
+	key := vars["id"]
+
+	var personality models.Personality
+
+	database.DB.First(&personality, key)
+
+	json.NewDecoder(r.Body).Decode(&personality)
+
+	database.DB.Model(&personality).Update("history", personality.History)
+
+	json.NewEncoder(w).Encode(personality)
+}
