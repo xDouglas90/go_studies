@@ -29,6 +29,10 @@ func CreateStudent(c *gin.Context) {
 		c.JSON(400, gin.H{"error": err.Error()})
 		return
 	}
+	if err := models.Validate(&newStudent); err != nil {
+		c.JSON(400, gin.H{"error": err.Error()})
+		return
+	}
 	database.DBConn.Create(&newStudent)
 	c.JSON(201, newStudent)
 }
@@ -38,6 +42,10 @@ func UpdateStudent(c *gin.Context) {
 	id := c.Param("id")
 	database.DBConn.First(&student, id)
 	if err := c.ShouldBindJSON(&student); err != nil {
+		c.JSON(400, gin.H{"error": err.Error()})
+		return
+	}
+	if err := models.Validate(&student); err != nil {
 		c.JSON(400, gin.H{"error": err.Error()})
 		return
 	}
