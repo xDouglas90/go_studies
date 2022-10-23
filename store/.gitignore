@@ -1,0 +1,3 @@
+// essentials ignore for GO project
+.env
+.vscode

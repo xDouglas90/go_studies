@@ -1,0 +1,26 @@
+{{define "index"}}
+
+{{template "_head"}}
+
+<body>
+    {{template "_navbar"}}
+
+    <main class="container">
+        <div class="jumbotron jumbotron-fluid">
+            <div class="container">
+                <div class="d-flex flex-column align-items-center justify-content-center">
+                    <h1 class="display-4">Bem vindo(a) a Loja Alura</h1>
+                    <p class="lead">Teste de texto introdutório</p>
+
+                    <a href="/products" class="btn btn-primary">Listar produtos</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    {{template "_bootstrap-js"}}
+</body>
+
+</html>
+
+{{end}}
