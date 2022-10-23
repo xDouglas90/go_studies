@@ -1,0 +1,42 @@
+version: '3.9'
+
+services:
+  postgres:
+    container_name: postgres_gin
+    image: postgres
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: root
+      PGDATA: /data/postgres
+    volumes:
+      - ./postgres-data:/var/lib/postgresql/data
+    ports:
+      - '5433:5432'
+    networks:
+      - postgres
+    restart: unless-stopped
+
+  pgadmin:
+    container_name: pgadmin_gin
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: odouglas.dev@gmail.com
+      PGADMIN_DEFAULT_PASSWORD: root
+    volumes:
+      - pgadmin:/var/lib/pgadmin
+
+    ports:
+      - '6060:80'
+    networks:
+      - postgres
+    restart: unless-stopped
+    depends_on:
+      - postgres
+
+networks:
+  postgres:
+    driver: bridge
+
+volumes:
+  postgres:
+  pgadmin:
