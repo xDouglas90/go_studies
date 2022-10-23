@@ -1,0 +1,70 @@
+{{define "products"}}
+
+{{template "_head"}}
+
+<body>
+    {{template "_navbar"}}
+
+    <main class="container">
+        <section class="row">
+            <div class="col-12">
+                <div class="jumbotron jumbotron-fluid">
+                    <div class="container">
+                        <div class="d-flex flex-column align-items-center justify-content-center mb-5">
+                            <h1 class="display-5">Nossos produtos</h1>
+                            <p class="lead">Qualidade comprovada por nossos clientes.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12">
+                <table class="table table-hover">
+                    <caption class="d-none">Produtos</caption>
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>Descrição</th>
+                            <th>Preço</th>
+                            <th class="text-center">Quantidade</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{range .}}
+                        <tr>
+                            <td>{{.Name}}</td>
+                            <td>{{.Description}}</td>
+                            <td>{{.Price}}</td>
+                            <td class="text-center">{{.Quantity}}</td>
+                            <td><a class="btn btn-info" href="/products/edit?id={{.Id}}">Editar</a></td>
+                            <td><button class="btn btn-danger" onclick="onDelete('{{.Id}}')">Excluir</button></td>
+                        </tr>
+                        {{end}}
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section class="row">
+            <div class="col-12">
+                <a href="/products/register" class="btn btn-primary">Cadastrar produto</a>
+            </div>
+        </section>
+    </main>
+
+    {{template "_bootstrap-js"}}
+
+    <script>
+        function onDelete(id) {
+            let confirmation = confirm("Deseja realmente excluir o produto?");
+
+            if (confirmation) {
+                window.location.href = `/products/delete?id=${id}`;
+            }
+        }
+    </script>
+</body>
+
+</html>
+
+{{end}}

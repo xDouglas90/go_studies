@@ -1,0 +1,68 @@
+{{define "edit"}}
+
+{{template "_head"}}
+
+<body>
+    {{template "_navbar"}}
+
+    <main class="container">
+        <section class="row">
+            <div class="col-12">
+                <div class="jumbotron jumbotron-fluid">
+                    <div class="container">
+                        <div class="d-flex flex-column align-items-center justify-content-center mb-5">
+                            <h1 class="display-5">Editar produto</h1>
+                            <p class="lead">Edite os dados do produto.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12">
+                <form method="POST" action="update">
+                    <div class="d-flex flex-column align-items-center justify-content-center">
+                        <div class="row justify-content-center">
+                            <div class="col-7">
+                                <input type="hidden" name="id" value="{{.Id}}" />
+                                <div class="form-group">
+                                    <label for="name">Nome:</label>
+                                    <input type="text" name="name" value="{{.Name}}" class="form-control"
+                                        aria-label="Nome">
+                                </div>
+                                <div class="form-group">
+                                    <label for="description">Descrição:</label>
+                                    <textarea class="form-control" name="description"
+                                        placeholder="Adicione a descrição">{{.Description}}</textarea>
+                                </div>
+                            </div>
+                            <div class="col-7">
+                                <div class="input-group">
+                                    <div class="form-group col-3 me-3">
+                                        <label for="price">Preço:</label>
+                                        <input type="number" name="price" value="{{.Price}}" class="form-control"
+                                            step="0.01" aria-label="Preço">
+                                    </div>
+                                    <div class="form-group col-3">
+                                        <label for="quantity">Quantidade:</label>
+                                        <input type="number" name="quantity" value="{{.Quantity}}" class="form-control"
+                                            aria-label="Quantidade">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-7 mt-3">
+                                <button type="submit" value="register" class="btn btn-primary">Atualizar</button>
+                                <a class="btn btn-secondary" href="/products">Voltar</a>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    {{template "_bootstrap-js"}}
+
+</body>
+
+</html>
+{{end}}

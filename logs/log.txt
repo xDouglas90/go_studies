@@ -1,0 +1,12 @@
+16/10/2022 19:30:44 - https://random-status-code.herokuapp.com/ - online: true
+16/10/2022 19:30:44 - https://alura.com.br/ - online: true
+16/10/2022 19:30:45 - https://caelum.com.br/ - online: true
+16/10/2022 19:30:46 - https://google.com/ - online: true
+16/10/2022 19:30:57 - https://random-status-code.herokuapp.com/ - online: false
+16/10/2022 19:30:57 - https://alura.com.br/ - online: true
+16/10/2022 19:30:58 - https://caelum.com.br/ - online: true
+16/10/2022 19:30:58 - https://google.com/ - online: true
+16/10/2022 19:31:09 - https://random-status-code.herokuapp.com/ - online: false
+16/10/2022 19:31:09 - https://alura.com.br/ - online: true
+16/10/2022 19:31:10 - https://caelum.com.br/ - online: true
+16/10/2022 19:31:10 - https://google.com/ - online: true
