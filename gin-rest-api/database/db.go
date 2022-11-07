@@ -15,7 +15,7 @@ var (
 )
 
 func Connect() {
-	dsn := "host=localhost user=root password=root dbname=root port=5433 sslmode=disable TimeZone=America/Sao_Paulo"
+	dsn := "host=localhost user=root password=root dbname=root port=5434 sslmode=disable TimeZone=America/Sao_Paulo"
 	DBConn, err = gorm.Open(postgres.Open(dsn), &gorm.Config{})
 	if err != nil {
 		log.Fatal("Error connecting to database")
